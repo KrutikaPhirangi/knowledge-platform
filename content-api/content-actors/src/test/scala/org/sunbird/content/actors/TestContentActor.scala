@@ -42,7 +42,7 @@ class TestContentActor extends BaseSpec with MockFactory {
         val graphDB = mock[GraphService]
         (oec.graphService _).expects().returns(graphDB).anyNumberOfTimes()
         // Uncomment below line if running individual file in local.
-        //(graphDB.readExternalProps(_: Request, _: List[String])).expects(*, *).returns(Future(new Response()))
+        (graphDB.readExternalProps(_: Request, _: List[String])).expects(*, *).returns(Future(new Response()))
         (graphDB.addNode(_: String, _: Node)).expects(*, *).returns(Future(getValidNode())).anyNumberOfTimes()
         (graphDB.getNodeByUniqueIds(_: String, _: SearchCriteria)).expects(*, *).returns(Future(new util.ArrayList[Node]() {
             {

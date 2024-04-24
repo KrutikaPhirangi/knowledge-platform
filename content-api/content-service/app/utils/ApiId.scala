@@ -79,26 +79,23 @@ object ApiId {
 	val GET_HIERARCHY_V4 = "api.collection.hierarchy.get"
 	val SYSTEM_UPDATE_COLLECTION = "api.collection.system.update"
 	val REVIEW_COLLECTION = "api.collection.review"
-    val REJECT_COLLECTION = "api.collection.review.reject"
+	val REJECT_COLLECTION = "api.collection.review.reject"
 
-  //App APIs
-  val REGISTER_APP = "api.app.register"
-  val READ_APP = "api.app.read"
-  val UPDATE_APP = "api.app.update"
-  val APPROVE_APP = "api.app.approve"
-  val REJECT_APP = "api.app.reject"
-  val RETIRE_APP = "api.app.retire"
+	//App APIs
+	val REGISTER_APP = "api.app.register"
+	val READ_APP = "api.app.read"
+	val UPDATE_APP = "api.app.update"
+	val APPROVE_APP = "api.app.approve"
+	val REJECT_APP = "api.app.reject"
+	val RETIRE_APP = "api.app.retire"
 
-  val CREATE_EVENT = "api.event.create"
-  val UPDATE_EVENT = "api.event.update"
+	val CREATE_EVENT = "api.event.create"
+	val UPDATE_EVENT = "api.event.update"
 
-  val CREATE_EVENT_SET = "api.eventset.create"
-  val UPDATE_EVENT_SET = "api.eventset.update"
-  val PUBLISH_EVENT_SET = "api.eventset.publish"
-  val PUBLISH_EVENT = "api.event.publish"
-
-	//Object APIs
-	val READ_OBJECT = "api.object.read"
+	val CREATE_EVENT_SET = "api.eventset.create"
+	val UPDATE_EVENT_SET = "api.eventset.update"
+	val PUBLISH_EVENT_SET = "api.eventset.publish"
+	val PUBLISH_EVENT = "api.event.publish"
 
 	//Collection CSV APIs
 	val IMPORT_CSV = "api.collection.import"
@@ -106,6 +103,12 @@ object ApiId {
 	val RESERVE_DIAL_COLLECTION = "api.collection.dialcode.reserve"
 	val RELEASE_DIAL_COLLECTION = "api.collection.dialcode.release"
 
+	//Schema API
+	val CREATE_SCHEMA = "api.schema.create"
+	val READ_SCHEMA = "api.schema.read"
+	val UPDATE_SCHEMA = "api.schema.update"
+	val UPLOAD_SCHEMA = "api.schema.upload"
+	val PUBLISH_SCHEMA = "api.schema.publish"
 	//Asset License Validate API
 	val ASSET_LICENSE_VALIDATE = "asset.url.validate"
 }
