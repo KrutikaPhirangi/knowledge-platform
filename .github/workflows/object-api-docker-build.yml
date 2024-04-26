@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -f build/content-service/Dockerfile \ -t sanketika/object-service:${{ env.IMAGE_TAG }}_${{ github.run_number }} \ .
+          docker build -f build/object-service/Dockerfile \ -t sanketika/object-service:${{ env.IMAGE_TAG }}_${{ github.run_number }} \ .
 
       - name: Push Docker image
         run: |
