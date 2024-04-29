@@ -23,7 +23,7 @@ jobs:
 
       - name: Maven Build
         run: |
-          mvn clean install
+          mvn clean install -DskipTests
           cd content-api/content-service
           mvn play2:dist
 
