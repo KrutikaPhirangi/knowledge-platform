@@ -57,16 +57,16 @@ class ObjectController  @Inject()(@Named(ActorNames.OBJECT_ACTOR) objectActor: A
     getResult(s"api.$schema.retire", objectActor, retireRequest, version = apiVersion)
   }
 
-  def transition(schema: String, transition: String, identifier: String) = Action.async { implicit request =>
-    val headers = commonHeaders()
-    val body = requestBody()
-    val content = body.getOrDefault(schema, new java.util.HashMap()).asInstanceOf[java.util.Map[String, Object]]
-    content.putAll(headers)
-    val transitionRequest = getRequest(content, headers, transition)
-    setRequestContext(transitionRequest, version, schema.capitalize, schema)
-    transitionRequest.getContext.put("identifier", identifier);
-    getResult(s"api.$schema.transition", objectActor, transitionRequest, version = apiVersion)
-  }
+//  def transition(schema: String, transition: String, identifier: String) = Action.async { implicit request =>
+//    val headers = commonHeaders()
+//    val body = requestBody()
+//    val content = body.getOrDefault(schema, new java.util.HashMap()).asInstanceOf[java.util.Map[String, Object]]
+//    content.putAll(headers)
+//    val transitionRequest = getRequest(content, headers, transition)
+//    setRequestContext(transitionRequest, version, schema.capitalize, schema)
+//    transitionRequest.getContext.put("identifier", identifier);
+//    getResult(s"api.$schema.transition", objectActor, transitionRequest, version = apiVersion)
+//  }
 
 
 }

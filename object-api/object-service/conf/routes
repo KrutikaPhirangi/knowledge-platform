@@ -2,12 +2,8 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET		  /health						    controllers.HealthController.health
-GET       /service/health                   controllers.HealthController.serviceHealth
-
 # Object v4 Api's
 GET     /:schema/v1/read/:identifier             controllers.v4.ObjectController.read(schema:String, identifier:String, fields:Option[String])
 POST    /:schema/v1/create                       controllers.v4.ObjectController.create(schema: String)
 PATCH   /:schema/v1/update/:identifier           controllers.v4.ObjectController.update(schema:String, identifier:String)
 DELETE  /:schema/v1/retire/:identifier           controllers.v4.ObjectController.retire(schema:String, identifier:String)
-POST    /:schema/v1/:transition/:identifier      controllers.v4.ObjectController.transition(schema: String, transition: String, identifier:String)

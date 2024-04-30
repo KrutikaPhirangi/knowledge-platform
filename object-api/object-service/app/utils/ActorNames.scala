@@ -16,4 +16,3 @@ object ActorNames {
   final val SCHEMA_ACTOR = "SchemaActor"
   final val COLLECTION_CSV_ACTOR = "collectionCSVActor"
 }
-

@@ -1,7 +1,6 @@
 package controllers
 
 
-import java.io.File
 import java.util
 import java.util.UUID
 
@@ -31,35 +30,6 @@ abstract class BaseController(protected val cc: ControllerComponents)(implicit e
   def requestBody()(implicit request: Request[AnyContent]) = {
     val body = request.body.asJson.getOrElse("{}").toString
     JavaJsonUtils.deserialize[java.util.Map[String, Object]](body).getOrDefault("request", new java.util.HashMap()).asInstanceOf[java.util.Map[String, Object]]
-  }
-
-  def requestFormData(identifier: String)(implicit request: Request[AnyContent]) = {
-    val reqMap = new util.HashMap[String, AnyRef]()
-    if(!request.body.asMultipartFormData.isEmpty) {
-      val multipartData = request.body.asMultipartFormData.get
-      if (null != multipartData.asFormUrlEncoded && !multipartData.asFormUrlEncoded.isEmpty) {
-        if(multipartData.asFormUrlEncoded.getOrElse("fileUrl",Seq()).length > 0){
-          val fileUrl: String = multipartData.asFormUrlEncoded.getOrElse("fileUrl",Seq()).head
-          if (StringUtils.isNotBlank(fileUrl))
-            reqMap.put("fileUrl", fileUrl)
-        }
-        if(multipartData.asFormUrlEncoded.getOrElse("filePath",Seq()).length > 0){
-          val filePath: String = multipartData.asFormUrlEncoded.getOrElse("filePath",Seq()).head
-          if (StringUtils.isNotBlank(filePath))
-            reqMap.put("filePath", filePath)
-        }
-      }
-      if (null != multipartData.files && !multipartData.files.isEmpty) {
-        val file: File = new File("/tmp" + File.separator + identifier + "_" + System.currentTimeMillis + "_"+ request.body.asMultipartFormData.get.files.head.filename)
-        val copiedFile: File = multipartData.files.head.ref.copyTo(file, false).toFile
-        reqMap.put("file", copiedFile)
-      }
-    }
-    if(StringUtils.isNotBlank(reqMap.getOrDefault("fileUrl", "").asInstanceOf[String]) || null != reqMap.get("file").asInstanceOf[File]){
-      reqMap
-    } else {
-      throw new ClientException("ERR_INVALID_DATA", "Please Provide Valid File Or File Url!")
-    }
   }
 
   def commonHeaders(ignoreHeaders: Option[List[String]] = Option(List()))(implicit request: Request[AnyContent]): java.util.Map[String, Object] = {
@@ -194,19 +164,6 @@ abstract class BaseController(protected val cc: ControllerComponents)(implicit e
 
   private def setObjectTypeForRead(objectType: String, result: java.util.Map[String, AnyRef]): Unit = {
     result.put("objectType", "Content")
-  }
-
-  def validatePrimaryCategory(input: java.util.Map[String, AnyRef]): Boolean = StringUtils.isNotBlank(input.getOrDefault("primaryCategory", "").asInstanceOf[String])
-
-  def validateContentType(input: java.util.Map[String, AnyRef]): Boolean = StringUtils.isNotBlank(input.getOrDefault("contentType", "").asInstanceOf[String])
-
-
-  def getErrorResponse(apiId: String, version: String, errCode: String, errMessage: String): Future[Result] = {
-    val result = ResponseHandler.ERROR(ResponseCode.CLIENT_ERROR, errCode, errMessage)
-    result.setId(apiId)
-    result.setVer(version)
-    setResponseEnvelope(result)
-    Future(BadRequest(JavaJsonUtils.serialize(result)).as("application/json"))
   }
 
 }

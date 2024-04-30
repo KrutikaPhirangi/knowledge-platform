@@ -1,4 +1,4 @@
-package org.sunbird.content.actors
+package org.sunbird.obj.actors
 
 import akka.actor.Props
 import org.scalamock.scalatest.MockFactory
@@ -122,7 +122,7 @@ class TestObjectActor extends BaseSpec with MockFactory{
     assert("Invalid version Key".equals(response.getParams.getErrmsg))
   }
 
-  ignore should "return success response for retireObject" in {
+  it should "return success response for retireObject" in {
     implicit val oec: OntologyEngineContext = mock[OntologyEngineContext]
     val graphDB = mock[GraphService]
     (oec.graphService _).expects().returns(graphDB).repeated(2)

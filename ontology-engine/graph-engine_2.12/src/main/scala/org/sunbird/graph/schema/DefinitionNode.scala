@@ -22,6 +22,7 @@ object DefinitionNode {
     val graphId: String = request.getContext.get("graph_id").asInstanceOf[String]
     val version: String = request.getContext.get("version").asInstanceOf[String]
     val schemaName: String = request.getContext.get("schemaName").asInstanceOf[String]
+    println(schemaName,"====schema name======")
     val objectCategoryDefinition: ObjectCategoryDefinition = getObjectCategoryDefinition(request.getRequest.getOrDefault("primaryCategory", "").asInstanceOf[String],
       schemaName, request.getContext.getOrDefault("channel", "all").asInstanceOf[String])
     val definition = DefinitionFactory.getDefinition(graphId, schemaName, version, objectCategoryDefinition)
